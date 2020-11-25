@@ -1,0 +1,73 @@
+{% extends "basemar.html" %} 
+{% load crispy_forms_tags %} 
+
+{% block content %}
+{% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:1070px; margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold">Client Details</h2></b>
+
+<hr class="my-4">
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            {{form.clientname|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.company_name|as_crispy_field}}
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+            {{form.contact|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.client_address|as_crispy_field}}
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-md-6">
+            {{form.alcontact|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.company_email|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{form.meeting|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.status|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+       
+            {{form.remarks|as_crispy_field}}
+     </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-8">
+           <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'view_client' employee.id %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+</div>
+</div>
+{% endfor %}
+{% endblock content %}

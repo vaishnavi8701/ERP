@@ -1,0 +1,106 @@
+ {% extends "basefin.html" %} {% csrf_token %} {% block content %} {% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron " style="width:1070px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Add Vendor</h2></b></div>
+            <div class="col-md-6  input-container">
+                <label for="Name"><b style="font-style:bold; color:red;">Vendor ID: &nbsp;</b></label>
+                <input type="password" disabled name="password" placeholder={{eid}}>
+
+            </div>
+        </div>
+
+<form action="{% url 'addvendor' employee.Employee_id %}"  method="post">
+
+        <br> {% csrf_token %}
+
+
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><label for="vendor_name">Vendor Name:</label></td>
+                    <td><input type="text" placeholder="Enter Vendor name" name="vendor_name" required></td>
+                    <td><label for="service_provided">Service Provided:</label></td>
+                    <td><input list="browsers1" name="service_provided" id="service_provided" required>
+                        <datalist id="browsers1">
+                                         <option value="Recharges">Recharges </option>
+                                         <option value="Electricity">Electricity</option>
+                                         <option value="Building Rent">Building Rent</option>
+                                         <option value="Water Supplier">Water Supplier</option>
+                                         </datalist></td>
+                </tr>
+
+                <tr>
+                    <td><label for="contact">Contact No:</label></td>
+                    <td><input type="text" placeholder="Enter Contact No" name="contact" required></td>
+                    <td><label for="cost">Cost:</label></td>
+                    <td><input type="text"  value=0 name="cost" required></td>
+                </tr>
+
+                <tr>
+                    <td><label for="email">Email ID:</label></td>
+                    <td><input type="email" placeholder="Enter Email" name="email" required> </td>
+                    <td><label for="location">Location:</label></td>
+                    <td><input type="text" placeholder="Enter Location" name="location" required></td>
+                </tr>
+
+                <tr>
+
+                    <td><label for="due_date">Due Date:</label></td>
+                    <td><input type="date" placeholder="Enter due date" name="due_date" required></td>
+                    <td><label for="payment_duration">Payment Duration:</label></td>
+                      <td><input list="browsers3" name="payment_duration" id="payment_duration" required>
+                        <datalist id="browsers3">
+                                         <option value="Weekly">Weekly </option>
+                                         <option value="Monthly">Monthly</option>
+                                         <option value="Fourthnight">Fourthnight</option>
+                                         </datalist></td>
+                </tr>
+
+                <tr>
+                    <td><label for="mode_of_pay">Mode Of Payment:</label></td>
+                     <td><input list="browsers" name="mode_of_pay" id="mode_of_pay" required>
+                        <datalist id="browsers">
+                                         <option value="Cash">Cash </option>
+                                         <option value="Cheque">Cheque</option>
+                                         <option value="Online">Online</option>
+                                         </datalist>
+                  </td>
+                    <td><label for="vendor_pan">Vendor PAN Number:</label></td>
+                    <td><input type="text" placeholder="Enter PAN No" name="vendor_pan" required></td>
+                </tr>
+                
+              
+
+               <tr>
+                <td><label for="status">Status:</label></td>
+                <td> <input type="text" value='Active' name='status' ></td>
+                <td> <label for="vendor_gst">Vendor GST Number:</label></td>
+                <td><input type="text" placeholder="Enter GST No" name="vendor_gst" required></td>
+
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button> {% if messages %} {% for message in messages %} {% if message.tags %}
+                <script>
+                    alert("{{ message }}")
+                </script> {% endif %} {% endfor %} {% endif %}
+            </div>
+            <div class="col-md-6">
+                <a href="{% url 'addvendor' employee.Employee_id %}" class="btn btn-secondary btn-block btn-lg">
+                   </i> Reset
+                </a>
+            </div>
+        </div>
+        </form>
+        `{% endfor %}
+    </div>
+</div>
+{% endblock %}

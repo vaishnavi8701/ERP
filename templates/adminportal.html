@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% csrf_token %}
+
+{% block content %}<center>
+<h1 style="margin-top:150px; font-size:25px;">Welcome {{user.username}}!!</h1></center>
+{% endblock content %}

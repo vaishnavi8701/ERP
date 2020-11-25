@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Techvolt</title>
+     <link rel = "icon" href =  "{% static 'icon.jfif' %}" type = "image/x-icon"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Style the header */
+        
+        .button {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .btn-custom:hover {
+            background-color: whitesmoke;
+        }
+        
+        .button1 {
+            background-color: #008CBA;
+        }
+        
+        header {
+            background-color: white;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+        }
+        /* Create two columns/boxes that floats next to each other */
+        
+        nav {
+            float: left;
+            width: 20%;
+            height: 900px;
+            /* only for demonstration, should be removed */
+            background: #ccc;
+            padding: 20px;
+        }
+        /* Style the list inside the menu */
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .bg-img-reg {
+            background-image: url(" {% static 'images.jpg' %}");
+            min-height: 700px;
+            height: 300px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        article {
+            float: left;
+            padding: 20px;
+            width: 100%;
+            background-color: #f1f1f1;
+            height: 900px;
+            /* only for demonstration, should be removed */
+        }
+        /* Clear floats after the columns */
+        
+        section:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Style the footer */
+        
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+        
+        .footer1 {
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            color: #E64C58;
+        }
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        
+        @media (max-width: 600px) {
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <header>
+
+        <img style="padding=30px; margin-bottom:0px" src="{% static 'download.png' %}" alt="Techvolt" width=950 height="110"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b><a href="login/login"><button style="margin-left:50px; right:100px;" class="button button1">Employees Login</button></b></a>
+        <b><a href="#"><button style="top:0;right:100px;" class="button button1">FAQ</button></a></b>
+    </header>
+
+    <section>
+
+
+        <article class="bg-img-reg ">
+            <center>
+                <h1 style="color:#008CBA; font-size:25px;">Our Services</h1>
+                <p>Techvolt Software Limited provides services in Web Application Development, Mobile App Development and Software Development.</p>
+                <p>We also provides services in Embedded IOT and Digital Marketing.</p><br>
+                <img id="photo" src="{% static 'download1.jpg' %}" alt="techvolt" height="400" width="800">
+                <script>
+                    var myImage = document.getElementById("photo");
+                    var imageArray = [" {% static 'download1.jpg' %}", "{% static 'download2.jpg'%}", "{% static 'download3.jpg' %}", " {% static 'download4.jpg' %}", "{% static 'download5.jpg' %} "];
+                    var imageIndex = 0;
+
+                    function changeImage() {
+                        photo.setAttribute("src", imageArray[imageIndex]);
+                        imageIndex++;
+                        if (imageIndex >= imageArray.length) {
+                            imageIndex = 0;
+                        }
+                    }
+
+                    var imageHandle = setInterval(changeImage, 2000);
+                    photo.onclick = function() {
+                        clearInterval(imageHandle);
+                    }
+                </script>
+            </center><br><br>
+    </section>
+    <br>
+    <center>
+        <h2 style="color: #008CBA;">Announcements</h2>
+        </article>
+    </center>
+    <footer>
+
+        <marquee direction="up" height="90" scrollAmount=2 scrollDelay=50 class="sidelink" onMouseDown="this.stop()" onMouseOver="this.stop()" onMouseMove="this.stop()" onMouseOut="this.start()" vspace="10">
+            <center><a href=# style="font-size:14px; text-decoration:none;color:#660000;">Timing changes-Notification in the timings of the internships offered.</a></center><br>
+            <center><a href=# style="font-size:14px; text-decoration:none;color:#FF69B4;">New services and internships are provided for Web design</a></center><br>
+            <center><a href=# style="font-size:14px; text-decoration:none;color:#0A66CA;">Notification in the discount of the internships feees offered.</a></center><br>
+            <center><a href=# style="font-size:14px; text-decoration:none;color:#660000;">Timing changes-Notification in the timings of the internships offered.</a></center><br>
+            <center><a href=# style="font-size:14px; text-decoration:none;color:#FF69B4;">New services and internships are provided for Web design</a></center><br>
+            <center><a href=# style="font-size:14px; text-decoration:none;color:#53840A;">Notification in the discount of the internships feees offered.</a></center><br>
+        </marquee>
+
+    </footer>
+    <footer class="footer1">
+        <br>
+        <center><b style="color: black;"> Contact No:+91 9685437590</b> &nbsp;&nbsp;&nbsp;<b style="color: black;"> Email:</b> <a href="mailto:someone@example.com">support@techvolt.com</a></center>
+    </footer>
+
+</body>
+
+</html>

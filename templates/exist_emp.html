@@ -1,0 +1,75 @@
+ {% extends "base.html" %} {% csrf_token %} {% block content %}
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:1070px; margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Employees</h2></b></div>
+            <div class="col-md-6 input-container">
+               
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Emp.ID." title="Type in a name"></div>
+        </div>
+    
+
+        <hr class="my-4">
+        <table  class="table table-borderless" id="myTable">
+            <thead class="border-bottom font-weight-bold">
+                <tr>
+                   
+                    <th>EMP.ID</td>
+
+                    <th>Full Name</th>
+                    <th>Designation</th>
+                    <th>Photo</th>
+                    <th>Location</th>
+                    <th>Date of Joining</th>
+                    <th>
+                        <a href="{% url 'addemp' %}" style="border: none;"  class="btn btn-outline-success">
+                            <i class="fas fa-plus"></i> Add New
+                        </th>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in exist_emp %}
+                <tr>
+                    
+                    <td>{{employee.Employee_id}}</td>
+                    <td>{{employee.full_name}}</td>
+                    <td>{{employee.designation}}</td>
+
+                    <td><img src="{{ employee.image.url}}" alt="image" width=60px height=50px/></td>
+                    <td>{{employee.job_loc}}</td>
+                    <td>{{employee.doj}}</td>
+                    <td>
+                        <a href="{% url 'update' employee.id %}" class="btn text-secondary px-0">
+                            <i class="far fa-edit fa-lg"></i>
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+{% endblock content %}

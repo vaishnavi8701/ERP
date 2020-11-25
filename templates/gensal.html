@@ -1,0 +1,49 @@
+ {% extends "basehr.html" %} {% csrf_token %} {% block content %} {% for emp in employees %}
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:670px; margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Generate Salary</h2></b></div>
+
+</div>
+
+            <hr class="my-4">
+
+            <form method='post' action='{% url "gensal"  emp.Employee_id %}'>
+             {% csrf_token %} 
+                <table>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="month">Month:</label>
+                                    <input type="month" id="month" name="month">
+                                </div>
+                        </td>
+                        <td>
+                            <div class="col-md-6">
+                                <label for="department">Department:</label>
+                                <input list="browsers" name="dept" id="dept" required><datalist id="browsers">
+                                         <option value="Human Resource">Human Resource </option>
+                                         <option value="Technical">Technical</option>
+                                         <option value="Marketing">Marketing</option>
+                                         <option value="Finance">Finance</option></datalist>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+                    </div>
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    {% endfor %} {% endblock content %}

@@ -1,0 +1,101 @@
+ {% extends "basemar.html" %} {% csrf_token %} {% block content %} {% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron " style="width:1070px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Add Clients</h2></b></div>
+            <div class="col-md-6  input-container">
+                <label for="Name"><b style="font-style:bold; color:red;">Client ID: &nbsp;</b></label>
+                <input type="password" disabled name="password" placeholder={{clientid}}>
+
+            </div>
+        </div>
+
+<form action="{% url 'addclient' employee.Employee_id %}"  method="post">
+
+        <br> {% csrf_token %}
+
+
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><label for="clientname">Client Name:</label></td>
+                    <td><input type="text" placeholder="Enter client name" name="clientname" required></td>
+                </tr>
+                <tr>
+                    <td><label for="company_name">Company Name:</label></td>
+                    <td><input type="text" placeholder="Enter company name" name="company_name" required></td>
+                </tr>
+
+                <tr>
+                    <td><label for="contact">Contact No:</label></td>
+                    <td><input type="text" placeholder="Enter Contact No" name="contact" required></td>                </tr>
+                <tr>
+                    <td><label for="client_address">Address:</label></td>
+                    <td><input type="text" placeholder="Enter Address" name="client_address" required></td>
+                </tr>
+
+                <tr>
+                    <td><label for="alcontact">Alternative Contact No:</label></td>
+                    <td><input type="text" placeholder="Enter Alternative contact" name="alcontact" required> </td>                </tr>
+                <tr>
+                    <td><label for="company_email">Email ID:</label></td>
+                    <td><input type="text" placeholder="Enter Email id" name="company_email" required></td>
+                </tr>
+
+                <tr>
+             
+                 <td><label for="meeting">Meeting:</label></td><td>
+                <input list="browsers" name="meeting" id="meeting" required>
+                        <datalist id="browsers">
+                                         <option value="ERP">ERP</option>
+                                         <option value="CRM">CRM</option>
+                                         <option value="Billing">Billing</option>
+                                         <option value="Ecommerce">Ecommerce</option>
+                                         <option value="HRM">HRM</option></datalist>
+
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="email">Status:</label></td>
+                     <td><input list="browsers1" name="status" id="status" required>
+                        <datalist id="browsers1">
+                                         <option value="Opened">Opened</option>
+                                         <option value="Closed">Closed</option>
+                                        </datalist>
+
+                    </td>
+                   
+                </tr>
+
+                <tr>
+                    <td><label for="remarks">Remarks:</label></td>
+                    <td><input type="text" placeholder="Enter Remarks" name="remarks" required></td>
+                    
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button> {% if messages %} {% for message in messages %} {% if message.tags %}
+                <script>
+                    alert("{{ message }}")
+                </script> {% endif %} {% endfor %} {% endif %}
+            </div>
+        
+            <div class="col-md-6">
+                <a href="{% url 'addclient' employee.Employee_id %}" class="btn btn-secondary btn-block btn-lg">
+                    <i class="glyphicon glyphicon-refresh"></i> Reset
+                </a>
+            </div>
+        </div>
+        </form>
+        `{% endfor %}
+    </div>
+</div>
+{% endblock %}

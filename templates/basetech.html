@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin</title>
+    <title>Employee </title>
     <link rel = "icon" href =  "{% static 'icon.jfif' %}" type = "image/x-icon"> 
    
     
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -18,12 +19,12 @@
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
 </head>
 
 <style>
@@ -52,19 +53,11 @@
   right: 28px;
   width: 100px;
 }
-    table {
-  counter-reset: section;
-}
-    .count:before {
-  counter-increment: section;
-  content: counter(section);
-}
 
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
   position: fixed;
-  left:40%;
   bottom: 150px;
   border: 3px solid black;
   z-index: 9;
@@ -115,7 +108,13 @@
   opacity: 1;
 }
 
-
+    table {
+  counter-reset: section;
+}
+    .count:before {
+  counter-increment: section;
+  content: counter(section);
+}
 
     #myInput {
        background-image: url('https://www.w3schools.com/css/searchicon.png');
@@ -132,7 +131,6 @@
         background-image: url("{% static 'images.jpg' %}");
         min-height: 1200px;
         height: 300px;
-        
         background-position: center;
         background-repeat: repeat;
         background-size: cover;
@@ -213,73 +211,61 @@
 
     <section>
         <nav>
+          {% for employee in employees %}
 
-            <b><a href="adminportal" style="font-size:28px;color:#025072 ; text-decoration:none;" ><i style="font-size:30px;color:#025072 ;" class="fa fa-home"></i>&nbsp;Admin Home</a></b><br><br>
+            <b><a href="{% url 'techportal' employee.username %}" style="font-size:28px;color:#025072 ; text-decoration:none;" ><i style="font-size:30px;color:#025072 ;" class="fa fa-home"></i>&nbsp;Tech Home</a></b><br><br>
 
             <div class="dropdown" style="width:100%;">
-                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Employees</b>
-    <span style="margin-left:63%;"></span></button>
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Personal Info</b>
+    <span style="margin-left:55%;"></span></button>
                 <ul style="width:100%;" class="dropdown-menu">
-                    <li><a href="addemp">Add Employees</a></li>
-                    <li><a href="new">View Employees</a></li>
+                    <li><a href="{% url 'view_tech' employee.Employee_id %}">View Profile</a></li>
 
-                    <li><a href="exist_emp">Existing Employees</a></li>
                 </ul>
             </div>
             <br>
-            <div class="dropdown" style="width:100%;">
-                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Services</b>
-    <span style="margin-left:71%;"></span></button>
-                <ul style="width:100%;" class="dropdown-menu">
-                    <li><a href="new_services">New Services</a></li>
 
-
-                    <li><a href="view_services">Existing Services</a></li>
-                </ul>
-            </div>
-            <br>
-            <div class="dropdown" style="width:100%;">
-                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Clients</b>
-    <span style="margin-left:76%; "></span></button>
-                <ul style="width:100%;" class="dropdown-menu">
-                    <li><a href="proclient">New Clients</a></li>
-                    <li><a href="exclient">Existing Clients</a></li>
-
-                    <li><a href="clienthist">Client History</a></li>
-                </ul>
-            </div>
-            <br>
-            <div class="dropdown" style="width:100%;">
-                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Payments and Receipts</b>
-    <span style="margin-left:23.5%;"></span></button>
-                <ul style="width:100%;" class="dropdown-menu">
-                    <li><a href="adpay">View Salary Payments</a></li>
-                    <li><a href="vpay">View Vendor Payments</a></li>
-                    <li><a href="viewvendor">View Vendor Details</a></li>
-                    <li><a href="exreceiptad">Receipts</a></li>
-                    <li><a href="taxad">Tax Payments</a></li>
-                </ul>
-            </div>
-            <br>
             <div class="dropdown" style="width:100%;">
                 <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Leaves</b>
-    <span  style="margin-left:76%;"></span></button>
+    <span  style="margin-left:75%;"></span></button>
                 <ul style="width:100%;" class="dropdown-menu">
-                    <li><a href="new_approve">New Approval</a></li>
+                    <li><a href="{% url 'leave_requesttech' employee.Employee_id %}">New Request</a></li>
 
 
-                    <li><a href="view_approve">Existing </a></li>
+                    <li><a href="{% url 'view_leavetech' employee.Employee_id %}">Existing Leaves </a></li>
+                </ul>
+            </div>
+            <br>
+                       <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Salary</b>
+    <span style="margin-left:78%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li><a href="{% url 'Salarytech' employee.Employee_id %}">Salary Details</a></li>
+
+
+                    
                 </ul>
             </div>
             <br>
             <div class="dropdown" style="width:100%;">
                 <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Announcements</b>
-    <span style="margin-left:46.5%;"></span></button>
+    <span style="margin-left:46%;"></span></button>
                 <ul style="width:100%;" class="dropdown-menu">
-                    <li><a href="new_announce">New Announcements</a></li>
+                    <li><a href="{% url 'new_annountech' employee.Employee_id %}">New Announcements</a></li>
 
 
-                    <li><a href="view_announce">Existing Announcements</a></li>
+                    <li><a href="{% url 'view_annountech' employee.Employee_id %}">Existing Announcements</a></li>
+                </ul>
+            </div>
+            <br>
+                        <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Project Allocation</b>
+    <span style="margin-left:41%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li><a href="{% url 'newprotech' employee.Employee_id %}">Newly Assigned</a></li>
+
+
+                    <li><a href="{% url 'assignedproject' employee.Employee_id %}">Existing Projects</a></li>
                 </ul>
             </div>
             <br>
@@ -290,15 +276,15 @@
                     var logout = confirm("Are you sure to logout?");
 
                     if (logout) {
-                        location.href = "logout";
+                        location.href = "{% url 'logout' employee.Employee_id %}";
                     } else {
-                        location.href = "adminportal";
+                        location.href = "{% url 'techportal' employee.username %}";
                     }
 
                 }
             </script>
         </nav>
-
+  {% endfor %}
         <article class="bg-img-reg">
             <center>
                 <header>

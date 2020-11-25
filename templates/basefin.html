@@ -1,0 +1,377 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee </title>
+    <link rel="icon" href="{% static 'icon.jfif' %}" type="image/x-icon">
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 15px;
+    }
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    
+    .open-button {
+        background-color: #555;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        bottom: 23px;
+        right: 28px;
+        width: 100px;
+    }
+    /* The popup form - hidden by default */
+    
+    .form-popup {
+        display: none;
+        position: fixed;
+        bottom: 150px;
+        border: 3px solid black;
+        z-index: 9;
+    }
+    /* Add styles to the form container */
+    
+    .form-container {
+        max-width: 500px;
+        padding: 10px;
+        background-color: white;
+    }
+    /* Full-width input fields */
+    
+    .form-container input[type=text],
+    .form-container input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
+    /* When the inputs get focus, do something */
+    
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+    /* Set a style for the submit/login button */
+    
+    .form-container .btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+    }
+    /* Add a red background color to the cancel button */
+    
+    .form-container .cancel {
+        background-color: red;
+    }
+    /* Add some hover effects to buttons */
+    
+    .form-container .btn:hover,
+    .open-button:hover {
+        opacity: 1;
+    }
+    
+    #myInput {
+        background-image: url('https://www.w3schools.com/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+    
+    .bg-img-reg {
+        background-image: url("{% static 'images.jpg' %}");
+        min-height: 1200px;
+        height: 300px;
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+        position: relative;
+    }
+    /* Style the header */
+    
+    .button {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    
+    .btn-custom:hover {
+        background-color: whitesmoke;
+    }
+    
+    .button1 {
+        background-color: #008CBA;
+    }
+        table {
+  counter-reset: section;
+}
+    .count:before {
+  counter-increment: section;
+  content: counter(section);
+}
+    
+    header {
+        background-color: white;
+        text-align: center;
+        font-size: 35px;
+        color: white;
+    }
+    /* Create two columns/boxes that floats next to each other */
+    
+    nav {
+        float: left;
+        width: 19%;
+        height: 1200px;
+        /* only for demonstration, should be removed */
+        background: #f1f1f1;
+        padding: 20px;
+    }
+    /* Style the list inside the menu */
+    
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .navbar-nav li:hover>ul.dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-submenu>.dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+    }
+    /* rotate caret on hover */
+    
+    .dropdown-menu>li>a:hover:after {
+        text-decoration: underline;
+        transform: rotate(-90deg);
+    }
+    
+    .dropdown-submenu {
+        position: relative;
+    }
+    
+    article {
+        float: left;
+        padding: 20px;
+        width: 80%;
+        background-color: #f1f1f1;
+        height: 1200px;
+        /* only for demonstration, should be removed */
+    }
+    /* Clear floats after the columns */
+    
+    section:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+    @media (max-width: 600px) {
+        nav,
+        article {
+            width: 100%;
+            height: auto;
+        }
+    }
+</style>
+
+<body>
+
+    <section>
+        <nav>
+            {% for employee in employees %}
+            <b><a href="{% url 'finportal' employee.username %}" style="font-size:28px;color:#025072 ; text-decoration:none;" ><i style="font-size:30px;color:#025072 ;" class="fa fa-home"></i>&nbsp;Finance Home</a></b><br><br>
+
+            <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Personal Info</b>
+    <span style="margin-left:55.5%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li><a href="{% url 'view_fin' employee.Employee_id %}">View Profile</a></li>
+
+                </ul>
+            </div>
+            <br>
+
+            <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Leaves</b>
+    <span  style="margin-left:75%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li><a href="{% url 'leave_requestfin' employee.Employee_id %}">New Request</a></li>
+
+
+                    <li><a href="{% url 'view_leavefin' employee.Employee_id %}">Existing Leaves </a></li>
+                </ul>
+            </div>
+            <br>
+            <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Salary</b>
+    <span style="margin-left:77%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li><a href="{% url 'Salaryfin' employee.Employee_id %}">Salary Details</a></li>
+
+
+
+                </ul>
+            </div>
+            <br>
+            <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Announcements</b>
+    <span style="margin-left:45%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li><a href="{% url 'new_announfin' employee.Employee_id %}">New Announcements</a></li>
+
+
+                    <li><a href="{% url 'view_announfin' employee.Employee_id %}">Existing Announcements</a></li>
+                </ul>
+            </div>
+            <br>
+
+            <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Payments</b>
+    <span  style="margin-left:66%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+                    <li class="dropdown-submenu">
+                        <a class=" test dropdown-item dropdown-toggle" tabindex="-1" href="#">Vendors <span style="margin-left:70%;"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="{% url 'addvendor' employee.Employee_id %}">Add Vendors</a></li>
+                            <li><a tabindex="-1" href="{% url 'viewsvendor' employee.id %}">View Vendors</a></li>
+
+                        </ul>
+                    </li>
+  <li class="dropdown-submenu">
+                        <a class=" test dropdown-item dropdown-toggle" tabindex="-1" href="#">Employee Payments <span style="margin-left:30%;"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="{% url 'emppayfin' employee.Employee_id %}">New Payments</a></li>
+                            <li><a tabindex="-1" href="{% url 'pastpay' employee.Employee_id %}">Past Payments</a></li>
+
+                        </ul>
+                    </li>
+
+                  
+
+
+
+                    <li><a href="{% url 'taxfin' employee.Employee_id %}">Tax Payments </a></li>
+
+
+
+                </ul>
+            </div>
+            <br>
+
+            <div class="dropdown" style="width:100%;">
+                <button class="btn btn-default dropdown-toggle" style="width:100%; background-color:#f1f1f1;" type="button" data-toggle="dropdown"><b style="color:#025072 ;">Receipts</b>
+    <span  style="margin-left:70%;"></span></button>
+                <ul style="width:100%;" class="dropdown-menu">
+               
+                    <li><a href="{% url 'newpay' employee.Employee_id %}">New Client Receipts </a></li>
+
+                    <li><a href="{% url 'exreceipt' employee.Employee_id %}">Existing Receipts </a></li>
+                </ul>
+            </div>
+            <br>
+            <button class="btn btn-default" onclick="return ConfirmLogout()" style="width:100%; background-color:#f1f1f1; border-color:coral;"><b style="color:coral; margin-right:100%;">Logout</b></button>
+            <script>
+                function ConfirmLogout() {
+
+                    var logout = confirm("Are you sure to logout?");
+
+                    if (logout) {
+                        location.href = "{% url 'logout' employee.Employee_id %}";
+                    } else {
+                        location.href = "{% url 'finportal' employee.username %}";
+                    }
+
+                }
+            </script>
+        </nav>
+        {% endfor %}
+        <article class="bg-img-reg">
+            <center>
+                <header>
+
+                    <img style="padding=30px; margin-bottom:0px" src="{% static 'download.png' %}" alt="Techvolt" width=950 height="100">
+
+
+                </header>
+            </center>
+            <div class="container" style="width:auto; margin-right:0px;">
+
+
+                {% block content %} {% endblock content %}
+
+            </div>
+
+
+        </article>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-submenu a.test').on("click", function(e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+ 
+{% extends "basetech.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1070px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Projects</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>S.No</td>
+            <td>Client Name</td>
+            <td>Date Assigned</td>
+            <td>Category</td>
+        
+              <td>Project Starting Date</td>
+               <td>Project Ending Date</td>
+                <td>Project Leader</td>
+                  <td>Status</td>
+                  <td>Date of Completion</td>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in e %}
+            <tr>
+            <td class='count'></td>
+                <td>{{leave.client_name}}</td>
+                <td>{{leave.client_deadline}}</td>
+                <td>{{leave.category}}</td>
+                    <td>{{leave.project_start_date}}</td>
+                        <td>{{leave.project_end_date}}</td>
+                <td>{{leave.project_leader}}</td>
+                 <td>{{leave.project_status}}</td>
+                 {% if leave.project_status == 'Completed' %}
+                    <td>{{leave.date_of_complete}}</td>
+           
+                {% else %}<td></td>
+     {% endif %}
+        {% if leave.project_status == 'Ongoing' %}
+     <td><form action="{% url 'files'  leave.id employee.Employee_id %}" method='post' enctype="multipart/form-data">
+     {% csrf_token %}
+   
+  <input type="file" id="source_code" name="source_code">
+  <button type='submit' class='btn btn-success'>Submit Source Code</button>
+            </td>
+            {% else %}
+<td><a style='font-size:16px;' href="{{ leave.source_code.url }}">Source code</a></td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
+

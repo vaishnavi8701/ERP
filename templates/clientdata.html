@@ -1,0 +1,78 @@
+ {% extends "base.html" %} {% csrf_token %} {% block content %} 
+
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron " style="width:1070px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" > Client Details</h2></b></div>
+            <div class="col-md-6  input-container">{% for i in clients%}
+                <label for="Name"><b style="font-style:bold; color:red;">Client ID: &nbsp;</b></label>
+                <input type="password" disabled name="password" placeholder={{i.clientid}}>
+
+            </div>
+        </div>
+
+
+
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><label for="clientname">Client Name:</label></td>
+                    <td>{{i.clientname}}</td>
+                </tr>
+                <tr>
+                    <td><label for="company_name">Company Name:</label></td>
+                    <td>{{i.company_name}}></td>
+                </tr>
+
+                <tr>
+                    <td><label for="contact">Contact No:</label></td>
+                    <td>{{i.contact}}</td>                </tr>
+                <tr>
+                    <td><label for="client_address">Address:</label></td>
+                    <td>{{i.client_address}}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="alcontact">Alternative Contact No:</label></td>
+                    <td>{{i.alcontact}}</td>                </tr>
+                <tr>
+                    <td><label for="company_email">Email ID:</label></td>
+                    <td>{{i.company_email}}</td>
+                </tr>
+
+                <tr>
+             
+                 <td><label for="meeting">Meeting:</label></td><td>
+              {{i.meeting}}</td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="email">Status:</label></td>
+                     <td>{{i.status}}
+
+                    </td>
+                   
+                </tr>
+
+                <tr>
+                    <td><label for="remarks">Remarks:</label></td>
+                    <td>{{i.remarks}}
+                    </td>
+                    
+                </tr>
+{% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div style='float:right;' class="col-md-6">
+            <a href="{% url 'exclient' %}" style='color:white;text-decoration:none;'>    <button type="submit" class="btn btn-success btn-block btn-lg">
+                Back</button></a> 
+            </div>
+        </div>
+        </form>
+     
+    </div>
+</div>
+{% endblock %}

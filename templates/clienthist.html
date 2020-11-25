@@ -1,4 +1,4 @@
-{% load static %}
+ {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -308,10 +308,160 @@
 
                 </header>
             </center>
-            <div class="container" style="width:auto; margin-right:0px;">
+            <div style="width:auto; margin-right:0px;">
 
 
-                {% block content %} {% endblock content %}
+ 
+<div class="mt-sm-4">
+<div class="jumbotron" style="width:1200px;margin-left:0px;padding-left:15px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Clients</h2></b></div></div>
+
+  <hr>
+  
+<h4 style="color:#7D3C98 ">Completed Clients</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+       <td>S.No</td>
+            <td>Client.ID</td>
+           
+            <td>Client Name</td>
+            <td>Category</td>
+            <td>Quotation ID</td>
+            <td>Quotation Value</td>
+            <td>Payment Received</td>
+            <td>Balance Amount</td>
+            <td>Project Start Date</td>
+              <td>Project End Date</td>
+            <td>Project Leader</td>
+            <td>Project Status</td>
+            <td>Source Code</td>
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for last in clients %}
+            <tr>
+               
+            <tr>
+            <td class='count'></td>
+            <td>  {{last.clientid}}</td>
+                <td>{{last.client_name}}</td>
+                <td>{{last.category}}</td>
+                <td>{{last.quotation_id}}</td>
+                <td>{{last.total}}</td>
+                <td>{{last.amount_paid}}</td>
+                 <td>{{last.balance}}</td>
+                  <td>{{last.project_start_date}}</td>
+                   <td>{{last.project_end_date}}</td>
+                    <td>{{last.project_leader}}</td>
+                       <td>{{last.project_status}}</td>
+       {% if last.project_status == 'Completed' %}                 
+<td><a style='font-size:16px;' href="{{ last.source_code.url }}">Source code</a></td>
+         </td>
+         {% endif %}
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>        
+<hr>
+
+<h4 style="color:#7D3C98 "> Follow up Clients</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>S.No</th>
+        <th>Date</th>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Company Name</th>
+            <th>Address</th>
+            <th>Contact No</th>
+            <th> Alternative Contact No</th>
+            <th>Email ID</th>
+             <th>Meeting</th>
+            
+           
+              <th>Executive Name</th>
+              <th>Quotation</th>
+                <th>Quotation Value</th>
+                 <th>Remarks</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in openclients %}
+            <tr>
+            <td class='count'></td>
+            <td>{{leave.date}}</td>
+            <td>{{leave.clientid}}</td>
+            <td>{{leave.clientname}}</td>
+            <td>{{leave.company_name}}</td>
+                <td>{{leave.client_address}}</td>
+                <td>{{leave.contact}}</td>
+                <td>{{leave.alcontact}}</td>
+                <td>{{leave.company_email}}</td>
+                 <td>{{leave.meeting}}</td>
+                <td>{{leave.empname}}</td>
+                  <td>{{leave.quotation}}</td>
+                    <td>{{leave.total}}</td>
+                 <td>{{leave.remarks}}</td>
+                
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+<hr>
+<h4 style="color:#7D3C98 "> Closed Clients</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold"><tr>
+        <th>S.No</th>
+        <th>Date</th>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Company Name</th>
+            <th>Address</th>
+            <th>Contact No</th>
+            <th> Alternative Contact No</th>
+            <th>Email ID</th>
+             <th>Meeting</th>
+            
+           
+              <th>Executive Name</th>
+              <th>Quotation</th>
+                <th>Quotation Value</th>
+                 <th>Remarks</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in closeclients %}
+            <tr>
+  <td class='count'></td>
+            <td>{{leave.date}}</td>
+            <td>{{leave.clientid}}</td>
+            <td>{{leave.clientname}}</td>
+            <td>{{leave.company_name}}</td>
+                <td>{{leave.client_address}}</td>
+                <td>{{leave.contact}}</td>
+                <td>{{leave.alcontact}}</td>
+                <td>{{leave.company_email}}</td>
+                 <td>{{leave.meeting}}</td>
+                <td>{{leave.empname}}</td>
+                  <td>{{leave.quotation}}</td>
+                    <td>{{leave.total}}</td>
+                 <td>{{leave.remarks}}</td>
+
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+                
 
             </div>
 
@@ -324,3 +474,11 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+

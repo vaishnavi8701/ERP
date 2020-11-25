@@ -1,0 +1,52 @@
+ {% extends "basefin.html" %} {% csrf_token %} {% block content %} {% for emp in employees %}
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:670px; margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Payment</h2></b></div>
+
+</div>
+
+            <hr class="my-4">
+
+         
+                <table>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="amount">Total Amount:</label>
+                                    <input type="text"  name="amount" disabled value={{s}}>
+                                </div>
+                        </td>
+                        <td>
+                            <div class="col-md-6">
+                                <label for="bank">Bank Name:</label>
+                                <input list="browsers87" name="bank" id="bank" required><datalist id="browsers87">
+                                         <option value="Indian Bank">Indian Bank </option>
+                                         <option value="State Bank Of India">State Bank Of India</option>
+                                         <option value="Andhra Bank">Andhra Bank</option>
+                                         <option value="Standard Chartered">Standard Chartered</option></datalist>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="row">
+                    <div class="col-md-5">
+                        <button type="submit" class="btn btn-success btn-block btn-lg"><a href="{% url 'emp2' emp.Employee_id %}" style='color:white; text-decoration:none;'> <i class="fas fa-database"></i>
+                Submit</a></button>
+                    </div>
+                     <div class="col-md-5">
+                        <button type="submit" class="btn btn-danger btn-block btn-lg"><a href="{% url 'emp1' emp.Employee_id %}" style='color:white; text-decoration:none;'> 
+                Cancel</a></button>
+                    </div>
+
+                </div>
+
+
+           
+        </div>
+    </div>
+    {% endfor %} {% endblock content %}

@@ -1,0 +1,70 @@
+
+ {% extends "basehr.html" %} {% csrf_token %} {% block content %} {% for emp in employees %}
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:1070px; margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Employees</h2></b></div>
+            
+</div>
+
+        <hr class="my-4">
+        <table class="table table-borderless" id="myTable">
+            <thead class="border-bottom font-weight-bold">
+                <tr>
+                <th>Department</th>
+
+                    <th>EMP.ID</td>
+
+                        <th>Employee Name</th>
+                        <th>Salary</th>
+                        <th>Working Days</th>
+                        <th>Present Days</th>
+                      
+                       
+                        </td>
+                </tr>
+            </thead>
+            <tbody>
+                <form method='post' action='{% url "viewsalhr"  emp.Employee_id %}'>
+                    {% csrf_token %}
+
+                    <tr>{% for employee in exist_emp %}
+                    <td>{{employee.dept}}</td>
+
+                        <td>{{employee.Employee_id}}</td>
+                        <td>{{employee.full_name}}</td>
+                        <td>{{employee.salary}}</td>
+                        <td>30</td>
+                        <td><input type="text" value=30 name='present_days'  >
+</td>
+                        <td>
+                            <input style="width:20px;height:20px;" type="checkbox" name='employee' value="{{ employee.id }}">
+
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+        <center><button id="but1" type='submit'> Generate Salary</button></center>
+        </form>
+    </div>
+</div>
+<script>
+    function getvalues() {
+        var selected = new Array();
+        var checkbox = document.getElementById("myTable");
+        var selchek = checkbox.getElementsByTagName("input");
+        for (var i = 0; i < selchek.length; i++) {
+            if (selchek[i].checked) {
+                selected.push(selchek[i].value);
+            }
+        }
+        if (selected.length > 0) {
+            document.getElementById('display').innerHTML = selected;
+        }
+    };
+</script>
+    
+{% endfor %} {% endblock content %}

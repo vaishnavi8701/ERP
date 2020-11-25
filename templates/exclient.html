@@ -1,0 +1,63 @@
+ 
+{% extends "base.html" %}
+{% csrf_token %}
+
+
+
+{% block content %}
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:1070px; margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Clients</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <td>S.No</td>
+            <td>Client.ID</td>
+           
+            <td>Client Name</td>
+            <td>Category</td>
+            <td>Quotation ID</td>
+            <td>Quotation Value</td>
+            <td>Payment Received</td>
+            <td>Balance Amount</td>
+            <td>Project Start Date</td>
+              <td>Project End Date</td>
+            <td>Project Leader</td>
+            <td>Project Status</td>
+            <td>Source Code</td>
+           
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for last in client %}
+      
+            <tr>
+            <td class='count'></td>
+            <td> <a href="{% url 'clientdata' last.clientid %}" class="btn text-secondary px-0">  {{last.clientid}}</a></td>
+                <td>{{last.client_name}}</td>
+                <td>{{last.category}}</td>
+                <td> <a href="{% url 'quotview' last.clientid %}" class="btn text-secondary px-0">{{last.quotation_id}}</a></td>
+                <td>{{last.total}}</td>
+                <td>{{last.amount_paid}}</td>
+                 <td>{{last.balance}}</td>
+                  <td>{{last.project_start_date}}</td>
+                   <td>{{last.project_end_date}}</td>
+                    <td>{{last.project_leader}}</td>
+                       <td>{{last.project_status}}</td>
+                           {% if last.project_status == 'Completed' %}
+<td><a style='font-size:16px;' href="{{ last.source_code.url }}">Source code</a></td>
+            {% endif %}</td>
+
+
+            </tr>
+     
+       {% endfor%}
+    </tbody>
+</table>
+</div>
+</div>
+
+{% endblock content %}

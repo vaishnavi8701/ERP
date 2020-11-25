@@ -1,0 +1,67 @@
+ 
+{% extends "base.html" %}
+
+{% block content %}
+{% csrf_token %}
+
+
+
+ 
+<div class="mt-sm-4">
+<div class="jumbotron" style="width:1130px;margin-left:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Receipts</h2></b></div></div>
+          
+<hr>
+
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>S.NO</th>
+        <th>Date</th>
+        <th>Receipt ID</th>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Category</th>
+     
+        <th>Amount Received</th>
+        <th>Balance Amount</th>
+        <th>Next Due Date</th>
+          
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in clients %}
+            <tr>
+            <td class='count'></td>
+            <td>{{leave.date}}</td>
+            <td>{{leave.receipt_id}}</td>
+            <td>{{leave.client_id}}</td>
+            <td>{{leave.client_name}}</td>
+             <td>{{leave.category}}</td>
+            
+            <td>{{leave.amount_received}}</td>
+             <td>{{leave.balance_amt}}</td>
+              <td>{{leave.next_duedate}}</td>
+               
+                 <td> <button type="submit" class="btn btn-success "><a href="{% url 'receipt' leave.receipt_id %}" title='View Receipt ' style='color:white;text-decoration:none;' >
+                    <i class="fas fa-eye">  View</i>   </a></button></td>
+  <td> <button type="submit" class="btn btn-success "><a href="{% url 'recprint' leave.receipt_id %}" title='Print Receipt ' style='color:white;text-decoration:none;' ><i class="fas fa-print">
+                      Print  </i></a></button></td>
+  <td> <button type="submit" class="btn btn-success "><a href="{% url 'receiptdown' leave.receipt_id %}" title='Download Receipt ' style='color:white;text-decoration:none;' >
+                  <i class="fas fa-download">     Download</i>   </a></button></td>
+
+            </tr>
+        {% endfor %}
+<tr><td colspan=12><center>Total:{{amt}}</td></center></tr>
+    </tbody>
+</table>
+
+
+
+
+{% endblock content %}
+

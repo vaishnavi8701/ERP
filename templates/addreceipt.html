@@ -1,0 +1,106 @@
+ {% extends "basefin.html" %} {% csrf_token %} {% block content %} {% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron " style="width:1070px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Receipts</h2></b></div>
+            <div class="col-md-6  input-container">
+                <label for="Name"><b style="font-style:bold; color:red;">Receipt ID: &nbsp;</b></label>
+                <input type="password" disabled name="password" placeholder={{receipt_id}}>
+
+            </div>
+        </div>
+
+<form action="{% url 'addreceipt1' employee.Employee_id %}"  method="post">
+
+        <br> {% csrf_token %}
+
+
+
+        <table class="table">
+            <tbody>
+             <tr>
+                    <td><label for="client_id">Client ID:</label></td>
+                    <td><input type="text" value={{client_id}} name="client_id" required></td>
+                </tr>
+                <tr>
+                    <td><label for="client_name">Client Name:</label></td>
+                    <td>{{client_name}}</td>
+                </tr>
+                <tr>
+                    <td><label for="date">Date:</label></td>
+                    <td>{{date}}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="contact">Quotation Value:</label></td>
+                    <td> {{total}}</td>
+                <tr>
+                <tr>
+                    <td><label for="balance_amt">Balance Amount(Current):</label></td>
+                    <td> {{balance_amt}}  </td>                </tr>
+                <tr>
+                    <td><label for="amount_received">Amount Received:</label></td>
+                    <td><input type="text" placeholder="Enter Amount Received" name="amount_received" required></td>
+                </tr>
+
+               
+                    <td><label for="next_duedate">Next Due Date(If available):</label></td>
+                    <td><input type="date" name="next_duedate" ></td>
+                </tr>
+
+                <tr>
+             
+                 <td><label for="mode_of_pay">Mode of Payment:</label></td><td>
+                <input list="browsers" name="mode_of_pay" id="mode_of_pay" required>
+                        <datalist id="browsers">
+                                         <option value="Cash">Cash</option>
+                                         <option value="Cheque">Cheque</option>
+                                         <option value="DD">DD</option>
+                                         <option value="Online Transfer">Online Transfer</option>
+                                       </datalist>
+
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="cheque">Cheque/DD NO(If mode of pay is Cheque/DD):</label></td>
+                     <td><input type='text' name="cheque" >
+                   
+
+                    </td>
+                   
+                </tr>
+
+                <tr>
+                    <td><label for="cheque_date">Cheque Date(If Cheque/DD):</label></td>
+                    <td><input type="date"  name="cheque_date" ></td>
+                    
+                </tr>
+                 <tr>
+                    <td><label for="bank_name">Bank Name(If Cheque/DD):</label></td>
+                    <td><input type="text" placeholder="Enter Bank Name" name="bank_name" ></td>
+                    
+                </tr>
+                 <tr>
+                    <td><label for="online_ref">Online Reference Number:</label></td>
+                    <td><input type="text" placeholder="If Online" name="online_ref" ></td>
+                    
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+            </div>
+        
+          
+        </div>
+        </form>
+        `{% endfor %}
+    </div>
+</div>
+{% endblock %}

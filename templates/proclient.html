@@ -1,0 +1,101 @@
+ 
+{% extends "base.html" %}
+{% csrf_token %}
+
+
+
+{% block content %}
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:1070px; margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Project Allocation</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <td>S.No</td>
+            <td>Client.ID</td>
+           
+            <td>Client Name</td>
+            <td>Category</td>
+            <td>Quotation ID</td>
+            <td>Quotation Value</td>
+            <td>Payment Received</td>
+            <td>Work Allocation</td>
+            <td>Client Deadline</td>
+            <td>Marketing Executive Involved</td>
+           
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for last in client %}
+      
+            <tr>
+            <td class='count'></td>
+            <td> <a href="{% url 'clientda' last.clientid %}" class="btn text-secondary px-0">{{last.clientid}}</a></td>
+                <td>{{last.client_name}}</td>
+                <td>{{last.category}}</td>
+                <td> <a href="{% url 'quotview' last.clientid %}" class="btn text-secondary px-0"> {{last.quotation_id}}</a></td>
+                <td>{{last.total}}</td>
+                <td>{{last.amount_paid}}</td>
+            
+                {% if last.work %}
+                <td><p style='font-size:15px;'class="btn text-secondary px-0" onclick="openForm()" >Not Allocated</p></td>
+                {% else %}
+                <td> 0</td>
+         
+                {% endif %}
+                <td>{{last.client_deadline}}</td>
+                <td>{{last.executive}}</td>
+
+            </tr>
+     
+       {% endfor%}
+    </tbody>
+</table>
+</div>
+</div>
+
+<div class="form-popup " id="myForm">
+  <form action="{% url 'proall' %} " class="form-container" method='post'>
+ 
+    {% csrf_token %}
+<table>
+<tr><td>
+    <label for="clientid"><b>Client ID</b></label></td>
+    <td><input type="text"  name="clientid" required></td></tr>
+<tr>
+
+ <td><label for="project_leader"><b>Project Leader</b></label></td>
+                                                    <td><input list="browsers" name="project_leader" id="project_leader" required>
+                                                        <datalist id="browsers">
+                                        {% for i in r %}
+                                         <option value={{i.full_name}}>{{i.full_name}} </option>
+                                     
+                                        {% endfor %}   </datalist>
+                                                    </td>
+ </tr>
+  
+<tr><td><br>
+    <label for="project_deadline"><b>Project Deadline</b></label></td><td><br>
+    <input type="date"  name="project_deadline" required><br></td></tr><tr>
+<td><br>
+    <button type="submit" class="btn">Submit</button></td><td><br>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button></td></tr></table>
+  </form>
+</div>
+ 
+
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+{% endblock content %}

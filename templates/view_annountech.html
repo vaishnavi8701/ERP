@@ -1,0 +1,42 @@
+ 
+{% extends "basetech.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1070px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >View announcement</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Date Announced</td>
+            <td>Message</td>
+            <td>Announced To</td>
+            <td>Announced By</td>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for announce in announces %}
+            <tr>
+                <td>{{announce.date}}</td>
+                <td>{{announce.message}}</td>
+                <td>{{announce.announce_to}}</td>
+                <td>{{announce.announce_by}}</td>
+                
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
+

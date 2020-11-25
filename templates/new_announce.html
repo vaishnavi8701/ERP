@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:970px; margin-right:0px;">
+    
+            
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >New announcement</h2></b>
+
+
+<hr class="my-4">
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+ 
+    
+    <div class="row">
+        <div class="col-md-6">
+            {{form.announce_to|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.message|as_crispy_field}}
+        </div>
+    </div>
+        
+
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+        
+    </div>
+
+</form>
+{% endblock content %}

@@ -1,0 +1,46 @@
+ 
+{% extends "basetech.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1070px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Leaves Applied</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Date of Applied</td>
+            <td>From Date</td>
+            <td> To Date</td>
+            <td>Reason</td>
+             <td>Leave Type</td>
+              <td>Status</td>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in leaves %}
+            <tr>
+                <td>{{leave.date}}</td>
+                <td>{{leave.from_date}}</td>
+                <td>{{leave.to_date}}</td>
+                <td>{{leave.reason}}</td>
+                 <td>{{leave.leave_type}}</td>
+                  <td>{{leave.status}}</td>
+                
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
+

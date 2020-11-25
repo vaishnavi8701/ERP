@@ -1,0 +1,10 @@
+{% extends "basemar.html" %}
+{% csrf_token %}
+
+{% block content %}<center>
+
+{% for employee in employees %}
+<h1 style="margin-top:150px; font-size:25px;">Welcome {{employee.full_name}} </h1></center>
+
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends "basehr.html" %} {% csrf_token %} {% block content %}
+<center>
+    <div class="col-md-10  mt-sm-4">
+        <div class="jumbotron" style="width:570px; margin-right:0px;border:1px solid #2A0603;padding:18px;">
+
+            {% for employee in employees %}
+
+            <table>
+
+
+                <tr>
+                    <td>
+                        <center> <img src="{{ employee.image.url}}" alt="image" width=200px height=150px style="border:3px solid #2A0603;" /></center><br><br> </td><br> </tr>
+                <form action="{% url 'upload_photo' employee.Employee_id %}" method="post" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <tr>
+                        <td>
+                            <center><input type=file id="image" name="image" accept="image/*"><button class="btn  btn-success btn-block btn-primary" style="font-size:14px"> Upload Photo   <i class='fas fa-camera'></i><br> </button></center><br> <br> </td>
+                    </tr>
+                </form>
+                <tr>
+                    <td style="font-size:24px; color:red;">
+                        <center> {{employee.full_name}}</center>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size:20px">
+                        <center>{{employee.designation}}<br><br>
+                            <center>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <center><button class="open-button" onclick="openForm()" style="font-size:14px;width:250px;">  Change Password  <i class='fa fa-key'></i></button></td>
+                </tr>
+                </center>
+            </table>
+        </div>
+    </div>
+    <div class="form-popup " id="myForm">
+        <form action="{% url 'change_pass' employee.Employee_id %}" class="form-container" method='post'>
+
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>
+                        <label for="new_pass"><b>New Password</b></label></td>
+                    <td><input type="password" name="new_pass" required></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="con_pass"><b>Confirm Password</b></label></td>
+                    <td>
+                        <input type="password" name="con_pass" required><br></td>
+                </tr>
+                <tr>
+                    <td><br>
+                      <button type="submit" class="btn">Submit</button></td>
+                    <td><br>
+                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+        alert("{{ message }}")
+    </script> {% endif %} {% endfor %} {% endif %} {% endfor %} {% endblock content %}

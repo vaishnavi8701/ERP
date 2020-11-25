@@ -1,0 +1,142 @@
+ 
+{% extends "basefin.html" %}
+
+{% block content %}
+{% csrf_token %}
+{% for employee in employees %}
+
+
+ 
+<div class="mt-sm-4">
+<div class="jumbotron" style="width:1100px;margin-left:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Vendors</h2></b></div></div>
+          
+<hr>
+
+<h4 style="color:#7D3C98 "> View Vendors</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+               <th>S.NO</th>
+      <th>Vendor ID</th>
+        <th>Vendor Name</th>
+        <th>Service Provided</th>
+            <th>Payment Mode</th>
+            <th>Amount</th>
+            <th> Status</th>
+            <th>Email ID</th>
+             <th>Location</th>
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+      {% for leave in v1 %}
+            <tr><td class="count"></td>
+     <td>{{leave.vendor_id}}</td>
+            <td>{{leave.vendor_name}}</td>
+            <td>{{leave.service_provided}}</td>
+               <td>{{leave.payment_duration}}</td>
+                <td>{{leave.cost}}</td>
+                 <td>{{leave.status}}</td>
+                  <td>{{leave.email}}</td>
+                   <td>{{leave.location}}</td>
+               
+                <td> <a href='{% url 'viewven'  employee.Employee_id leave.id %}' class="btn text-secondary px-0" title='Update and View Vendor'><i class="far fa-edit fa-lg"> </i></a></td>
+                <td ><a href='{% url 'venpay'  employee.Employee_id leave.id %}' ><button type="submit"   title='Make Payment' class="btn btn-success"> Make Payment</button></a></td>
+            </tr>
+  
+      {% endfor %}
+    </tbody>
+</table>
+<hr>
+<h4 style="color:#7D3C98 "> View Vendor Payments</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+   
+        <tr>
+
+         <th>S.NO</th>
+      <th>Vendor ID</th>
+        <th>Vendor Name</th>
+        <th>Service Provided</th>
+            <th>Payment Mode</th>
+             <th>Payment Date</th>
+            <th>Amount</th>
+            <th>Payment Method</th>
+          
+
+           
+        </tr>
+      
+    </thead>
+    <tbody>
+       {% for leave in v2 %}
+   
+            <tr><td class="count"></td>
+          <td>{{leave.vendor_id}}</td>
+            <td>{{leave.vendor_name}}</td>
+            <td>{{leave.service_provided}}</td>
+                <td>{{leave.payment_duration}}</td>
+                   <td>{{leave.paid_date}}</td>
+                <td>{{leave.cost}}</td>
+                <td>{{leave.mode_of_pay}}</td>
+               
+                 <td><a href='{% url 'viewven' employee.Employee_id leave.id %}' <button type="submit"  title='Generated salary slip'   class="btn btn-success"><istyle='color:black;' class="fas fa-eye"> View</i></button></a></td>
+                 <td>{{leave.first_payment_date}}</td>
+                   <td>{{leave.first_amt}}</td>
+                 
+                
+            </tr>
+      
+  {% endfor %}
+    </tbody>
+</table>
+<hr>
+<h4 style="color:#7D3C98 "> Inactive Vendors</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+      <th>S.NO</th>
+      <th>Vendor ID</th>
+        <th>Vendor Name</th>
+        <th>Service Provided</th>
+            <th>Payment Mode</th>
+            <th>Amount</th>
+         
+            <th>Email ID</th>
+             <th>Location</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in v3 %}
+            <tr>
+    <tr><td class="count"></td>
+     <td>{{leave.vendor_id}}</td>
+            <td>{{leave.vendor_name}}</td>
+            <td>{{leave.service_provided}}</td>
+               <td>{{leave.payment_duration}}</td>
+                <td>{{leave.cost}}</td>
+           
+                  <td>{{leave.email}}</td>
+                   <td>{{leave.location}}</td>
+                {% endfor %}  
+                
+
+            </tr>
+     
+
+    </tbody>
+</table>
+ 
+
+
+{% endfor %}
+
+
+{% endblock content %}
+

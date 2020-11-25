@@ -1,0 +1,76 @@
+ {% extends "basefin.html" %} {% csrf_token %} {% block content %} {% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron " style="width:1070px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Make Payments</h2></b></div>
+            
+        </div>
+
+<form action="{% url 'venpay1'  employee.Employee_id %}"  method="post">
+
+        <br> {% csrf_token %}
+
+
+
+        <table class="table">
+            <tbody>
+             <tr>
+                    <td><label for="vendor_id">Vendor Id:</label></td>
+                    <td><input type="text"  name="vendor_id" value={{id}} ></td>
+                  
+                </tr>
+
+                <tr>
+                    <td><label for="paid_date">Date:</label></td>
+                    <td>{{date}}</td>
+                  
+                </tr>
+
+                <tr>
+                    <td><label for="cost">Amount:</label></td>
+                    <td><input type="text" value={{cost}} name="cost" required></td>
+                    
+                </tr>
+
+                <tr>
+                    <td><label for="mode_of_pay">Mode of Pay:</label></td>
+                    <td><input type="text" value={{mode}} name="mode_of_pay" required> </td>
+                    
+                </tr>
+
+                <tr>
+
+                    <td><label for="acc_no">Cheque  No./DD No./Online Ref No.</label></td>
+                    <td><input type="text"  name="acc_no" required></td>
+                   
+                </tr>
+
+                <tr>
+                    
+                    <td><label for="bank_name">Bank Name:</label></td>
+                    <td><input type="text" placeholder="Enter Bank Name" name="bank_name" required></td>
+                </tr>
+                
+              
+
+          
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button> 
+            </div>
+            <div class="col-md-6">
+                <a href="{% url 'viewsvendor' employee.id %}" class="btn btn-secondary btn-block btn-lg">
+                   </i> Cancel
+                </a>
+            </div>
+        </div>
+        </form>
+        `{% endfor %}
+    </div>
+</div>
+{% endblock %}

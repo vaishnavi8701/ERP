@@ -1,0 +1,399 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Receipt</title>
+    <link rel = "icon" href =  "{% static 'icon.jfif' %}" type = "image/x-icon"> 
+    <script src="js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><style>
+.salary-slip{
+border:2px solid black;
+margin: 15px;
+}
+
+      .empDetail {
+        width: 100%;
+        text-align: left;
+        border: 2px solid black;
+        border-collapse: collapse;
+       
+       
+      }
+      .companyName {
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      
+      .head {
+        margin: 10px;
+        margin-bottom: 50px;
+        width: 100%;
+      }
+      
+
+      
+      .salaryMonth {
+        text-align: center;
+      }
+      
+      .table-border-bottom {
+        border-bottom: 1px solid;
+      }
+      
+      .table-border-right {
+        border-right: 1px solid;
+      }
+       #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 15px;
+    }
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    
+    .open-button {
+        background-color: #555;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        bottom: 23px;
+        right: 1px;
+        width: 100px;
+    }
+    /* The popup form - hidden by default */
+    .form-container {
+  max-width: 500px;
+  padding: 10px;
+  
+  background-color: white;
+}
+  table {
+  counter-reset: section;
+}
+    .count:before {
+  counter-increment: section;
+  content: counter(section);
+}
+    .form-popup {
+        display: none;
+        position: fixed;
+        bottom: 150px;
+        margin-left:40%;
+        border: 3px solid black;
+        z-index: 9;
+    }
+      .myBackground {
+        padding-top: 10px;
+        text-align: left;
+        border: 1px solid black;
+        height: 40px;
+      }
+      /* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+      .myAlign {
+      
+        border-right: 1px solid black;
+      }
+      
+      .myTotalBackground {
+        padding-top: 10px;
+        text-align: left;
+        background-color: #EBF1DE;
+        border-spacing: 0px;
+      }
+      
+      .align-4 {
+        width: 25%;
+        float: left;
+      }
+      
+      .tail {
+        margin-top: 35px;
+      }
+      
+      .align-2 {
+        margin-top: 25px;
+        width: 50%;
+        float: left;
+      }
+      
+      .border-center {
+        text-align: center;
+      } 
+     .border-center th, .border-center td {
+        border: 1px solid black;
+      }
+      
+      th, td {
+font-size:15px;
+        padding-left: 6px;
+      }
+
+
+
+</style></head><body>  
+
+<div id="content" class="salary-slip" >
+            <table class="empDetail" style='table-layout: fixed;'>
+<tr style='border-bottom:2px solid black;' >
+
+ 
+                
+                <td colspan=8 class="companyName">Receipt</td>
+              </tr>
+
+
+              <tr>
+                <td>
+ <img  height="70px" width=500px; src='{% static 'download.png' %}' />
+      </td><td><td>
+                <td class="myAlign"></td>
+
+                <th>
+                 
+      </th>  <td></td>
+                <td>
+      </td> <td></td>
+</tr><tr>
+                <th>
+                  Company Name
+      </th><td></td><td  class="myAlign"colspan=2>Techvolt Software Private Limited</td>
+    
+                <th>
+                  Date
+      </th><td></td>
+                <td>
+                  {{date}}
+      </td> <td></td>
+              </tr><tr>
+                <th>
+                  Address
+      </th><td></td>
+                <td  class="myAlign"colspan=2>
+                #28  2nd floor Raja Annamalai Road, Saibaba 
+      </td>
+             
+                <th>
+                  Quotation ID
+      </th><td></td>
+                <td>
+                  {{qu}}
+      </td> <td></td>
+              </tr>
+              <tr>
+                <th>
+                
+      </th><td></td><td class="myAlign"colspan=2>
+Colony, Coimbatore-641011
+                 
+      </td>
+                <th>
+                  TAN Number
+      </th><td></td>
+                <td>
+                  SD23AT3452
+      </td> <td></td></tr><tr>
+                <th>
+  Communication Details
+                 
+      </th><td></td>
+                <td>  8956342463
+                  
+      </td><td class="myAlign"></td>
+             
+                <th>
+                  GST number
+      </th><td></td>
+                <td>
+                   22AAAAA0000A123
+      </td> <td></td></tr><tr>
+                <th>
+                
+      </th><td></td>
+                <td>
+techvolt123@gmail.com
+                  
+      </td><td class="myAlign"></td>
+                <th>
+                  PAN Number
+      </th><td></td>
+                <td>
+                   APKF3254ET
+      </td><td></td>
+              </tr>
+              {% for i in employees%}
+               <tr style='border-top:1px solid black';>
+                <th>
+                  Client Name
+      </th><td></td>
+                <td>
+                   {{i.clientname}}
+      </td><td class="myAlign"></td>
+             
+                <th>
+                  Generated by
+      </th><td></td>
+                <td>
+                  {{i.empname}}
+      </td> <td></td>
+              </tr><tr>
+                <th>
+                  Client Address
+      </th><td></td>
+              
+                <td colspan=2 class="myAlign">  {{i.client_address}}</td>
+                <th>
+                
+      </th><td></td>
+                <td>
+                
+      </td> <td></td>
+              </tr>
+              <tr >
+                <th>
+                 Contact Number
+      </th><td></td>
+                <td>
+                   {{i.contact}}
+      </td><td class="myAlign"></td>
+                <th>
+               
+      </th><td></td>
+                <td>
+                {% endfor %}
+                
+      </td> <td></td></tr>
+             {% for i in r %}
+              <tr  style='border-top:1px solid black;'>
+              <td colspan=3> </td>
+              <td style='float:left;'>Receipt ID: </td>
+              <td>{{i.receipt_id}}</td><td colspan=3></td> </tr >
+              <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Category: </td>
+              <td>{{i.category}}</td><td colspan=3></td> </tr >
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Total Value:</td>
+              <td>{{i.totalvalue}}</td><td colspan=3></td> </tr >
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Amount Received: </td>
+              <td>{{i.amount_received}}</td><td colspan=3></td> </tr >
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Mode of Payment: </td>
+              <td>{{i.mode_of_pay}}</td><td colspan=3></td> </tr >
+                {% if max %}
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Cheque ID: </td>
+              <td>{{i.cheque}}</td><td colspan=3></td> </tr >
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Bank Name: </td>
+              <td>{{i.bank_name}}</td><td colspan=3></td> </tr >
+              {% else %}
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Reference ID: </td>
+              <td>{{i.online_ref}}</td><td colspan=3></td> </tr >
+              {% endif %}
+               {% if next %}
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Balance Amount: </td>
+              <td>{{i.balance_amt}}</td><td colspan=3></td> </tr >
+             {% else %}
+              <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Balance Amount: </td>
+              <td>0.0</td><td colspan=3></td> </tr >
+             <tr>
+             {% endif %}
+              {% if next %}
+               <td colspan=3> </td>
+              <td style='float:left;'>Next Due Date: </td>
+              <td>{{i.next_duedate}}</td><td colspan=3></td> </tr >
+             <tr>
+             {% endif %}
+               <td colspan=3> </td>
+              <td style='float:left;'>Actual Cost :</td>
+              <td>{{amount}}</td><td colspan=3></td> </tr >
+             <tr>
+               <td colspan=3> </td>
+              <td style='float:left;'>Tax:</td>
+              <td>{{i.tax}}</td><td colspan=3></td> </tr >
+           
+            
+         {% endfor %}
+   
+<tr  style='border-top:1px solid black;'>  <td colspan=8>Terms and Conditions</td> </tr>
+<tr>  <td colspan=8>*  As per the due date payment has to be done without fail otherwise penalty will be generated
+</td> </tr>
+<tr>  <td colspan=8>* Accepted Mode of Payments: Cash, Card
+</td> </tr>
+<tr>  <td colspan=8>* Incase of DD or Cheque, Amount must be paid in favour to Techvolt Software Pvt. Ltd., Coimbatore
+</td> </tr>
+<tr>  <td colspan=8>* Cheque payments are subjected to realization
+</td> </tr>
+<tr>  <td colspan=8>* Once payment is received no refund 
+</td> </tr>
+<tr><td colspan=8><br></td></tr>
+<tr><td colspan=8><center> <b>This Receipt is Autogenerated. No need of any signature.
+</b></td></tr>
+<tr><td colspan=8><br></td></tr>
+</table > </div ></div>
+
+
+
+         
+
+     </body>
+
+
+     <script>
+
+let doc = new jsPDF('p','pt','a4');
+
+doc.addHTML(document.body,function() {
+    doc.save('Receipt.pdf');
+});
+
+    </script>
+</html>

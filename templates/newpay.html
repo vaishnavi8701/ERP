@@ -1,0 +1,58 @@
+ 
+{% extends "basefin.html" %}
+
+{% block content %}
+{% csrf_token %}
+{% for employee in employees %}
+
+
+ 
+<div class="mt-sm-4">
+<div class="jumbotron" style="width:1100px;margin-left:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >New Client Payments</h2></b></div></div>
+          
+<hr>
+
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>S.NO</th>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Category</th>
+          
+             <th>Quotation ID</th>
+             
+              <th>Quotation Value</th>
+              <th>Expected Payment Date</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in clients %}
+            <tr>
+            <td class='count'></td>
+            <td>{{leave.clientid}}</td>
+            <td>{{leave.client_name}}</td>
+            <td>{{leave.category}}</td>
+            <td>{{leave.quotation_id}}</td>
+             <td>{{leave.total}}</td>
+              <td>{{leave.first_payment_date}}</td>
+               
+                 <td> <button type="submit" class="btn btn-success "><a href="{% url 'addreceipt' employee.Employee_id leave.clientid %}" title='Recieve Payment ' style='color:white;text-decoration:none;' >
+                         Receive Payment</a></button></td>
+
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endfor %}
+
+
+{% endblock content %}
+

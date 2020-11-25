@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+     <link rel = "icon" href =  "{% static 'icon.jfif' %}" type = "image/x-icon"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Style the header */
+        
+        .button {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .btn-custom:hover {
+            background-color: whitesmoke;
+        }
+        
+        .button1 {
+            background-color: #008CBA;
+        }
+        
+        header {
+            background-color: white;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+        }
+        
+        .btn-on-index {
+            background-color: #00694e;
+        }
+        
+        .btn-custom:hover {
+            background-color: whitesmoke;
+        }
+        
+        .hover-opacity {
+            transition: transform .2s;
+            margin: 0 auto;
+        }
+        
+        .hover-opacity:hover {
+            opacity: .7;
+        }
+        
+        .btn-login-custom:hover {
+            background-color: #00694e;
+        }
+        
+        .bg-img-reg {
+            background-image: url("{% static 'images.jpg' %}");
+            min-height: 500px;
+            height: 300px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }
+        /* Create two columns/boxes that floats next to each other */
+        
+        nav {
+            float: left;
+            width: 20%;
+            height: 900px;
+            /* only for demonstration, should be removed */
+            background: #ccc;
+            padding: 20px;
+        }
+        /* Style the list inside the menu */
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        article {
+            float: left;
+            padding: 20px;
+            width: 100%;
+            background-color: #f1f1f1;
+            height: 500px;
+            /* only for demonstration, should be removed */
+        }
+        /* Clear floats after the columns */
+        
+        section:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        
+        @media (max-width: 600px) {
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <header>
+
+        <img style="padding=30px; margin-bottom:0px" src="{% static 'download.png' %}" alt="Techvolt" width=950 height="125">
+        <b><a href="/"><button class="btn btn-login-custom1" style="border-color: coral;margin-left:200px;font-size: 19px; right:16px;" class="button button1">Back</button></b></a>
+
+    </header>
+
+    <section>
+
+
+        <article class="bg-img-reg">
+            <center>
+                <b> <a href="adlogin"><button style="top:220px; margin-left:200px; right:100px;font-size:24px;position: relative;" type="button" class="button button1">Admin Login</button></b></a>
+                <b> <a href="emplogin"><button style="top:220px; margin-left:100px; right:100px;font-size:24px;position: relative;" type="button" class="button button1">Employees Login</button></b></a>
+            </center>
+
+        </article>
+    </section>
+
+
+
+</body>
+
+</html>

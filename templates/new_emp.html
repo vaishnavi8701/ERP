@@ -1,0 +1,57 @@
+ 
+{% extends "base.html" %}
+{% csrf_token %}
+
+{% block content %}
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:1070px; margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >View Employees</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <td>S.No</td>
+            <td>EMP.ID</td>
+           
+            <td>Full Name</td>
+            <td>Designation</td>
+            <td>Location</td>
+            <td>Date of Joining</td>
+            <td>Username</td>
+            <td>Password</td>
+            <td>
+                <a href="{% url 'addemp' %}"  style="border: none;" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Add New
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for last in context %}
+        
+            <tr>
+            <td class='count'></td>
+            <td>{{last.Employee_id}}</td>
+                <td>{{last.full_name}}</td>
+                <td>{{last.designation}}</td>
+                <td>{{last.job_loc}}</td>
+                <td>{{last.doj}}</td>
+                <td>{{last.username}}</td>
+                <td>{{last.password}}</td>
+                <td>
+                    
+                     <a href="{% url "submit" last.pemail %}" class="btn text-secondary px-0">   <button type="submit" class="btn btn-success btn-block btn-primary"><i class="fas fa-database"></i>
+                Submit</button>
+                    </a>
+                   
+                </td>
+                {% endfor %}
+            </tr>
+       
+    </tbody>
+</table>
+</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+ {% extends "basemar.html" %} {% csrf_token %} {% block content %} {% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron " style="width:770px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-10 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Apply for Leave</h2></b></div>
+           
+        </div>
+
+<form action="{% url 'leave_requestmar' employee.Employee_id %}"  method="post">
+
+        <br> {% csrf_token %}
+
+    <script type="text/javascript">
+
+        function GetDays(){
+                var dropdt = new Date(document.getElementById("to_date").value);
+                var pickdt = new Date(document.getElementById("from_date").value);
+                return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
+        }
+
+        function cal(){
+        if(document.getElementById("to_date")){
+            document.getElementById("numdays").value=GetDays();
+        }  
+    }
+
+    </script>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><label for="from_date">From Date:</label></td>
+                    <td><input type="date" required  id="from_date" name="from_date" onchange="cal()"></td>
+                    
+                </tr>
+
+                <tr>
+                    <td><label for="to_date">To Date:</label></td>
+                    <td><input type="date" required   id="to_date" name="to_date"onchange="cal()"></td>
+                   
+                </tr>
+
+                <tr>
+                    <td><label for="numdays">Number of days:</label></td>
+                    <td><input type="text" class="textbox" id="numdays" name="numdays">
+                </tr>
+
+                <tr><td><label for="leave_type">Leave Type:</label></td>
+                <td><input list="browsers" name="leave_type" id="leave_type" required>
+                                                        <datalist id="browsers">
+                                         <option value="Earned / Previlege Leave ">Earned / Previlege Leave </option>
+                                         <option value="Sick Leave">Sick Leave</option>
+                                         <option value="Casual Leave">Casual Leave</option>
+                                         <option value="Other leave">Other leave</option></datalist>
+                                        
+ </td>
+                  
+                </tr>
+
+                <tr><td><label for="reason">Reason:</label></td>
+            <td><textarea placeholder="Minimum of 30 characters" id="reason" name="reason" rows="4" cols="50"></textarea>
+                   </td>
+                </tr>
+
+              
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button> 
+            </div>
+
+        </div>
+        </form>
+        `{% endfor %}
+    </div>
+</div>
+{% endblock %}

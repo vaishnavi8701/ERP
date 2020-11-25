@@ -1,0 +1,95 @@
+ 
+{% extends "basehr.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1100px;margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Leaves</h2></b></div>
+            <div class="col-md-6 input-container">
+               
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Emp.Name." title="Type in a name"></div>
+        </div>
+<hr class="my-4">
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>Employee Name</th>
+        <th>Employee ID</th>
+        <th>Designation</th>
+        <th>Department</th>
+            <th>Date of Applied</th>
+            <th>From Date</th>
+            <th> To Date</th>
+            <th>Reason</th>
+             <th>Leave Type</th>
+              <th>Status</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in leaves %}
+            <tr>
+            <td>{{leave.emp_name}}</td>
+            <td>{{leave.emp_id}}</td>
+            <td>{{leave.desgn}}</td>
+            <td>{{leave.branch}}</td>
+                <td>{{leave.date}}</td>
+                <td>{{leave.from_date}}</td>
+                <td>{{leave.to_date}}</td>
+                <td>{{leave.reason}}</td>
+                 <td>{{leave.leave_type}}</td>
+                 <td>{{leave.status}}</td>
+                
+
+            </tr>
+        {% endfor %}
+         {% for lea in leavesm %}
+            <tr>
+            <td>{{lea.emp_name}}</td>
+            <td>{{lea.emp_id}}</td>
+            <td>{{lea.desgn}}</td>
+            <td>{{lea.branch}}</td>
+                <td>{{lea.date}}</td>
+                <td>{{lea.from_date}}</td>
+                <td>{{lea.to_date}}</td>
+                <td>{{lea.reason}}</td>
+                 <td>{{lea.leave_type}}</td>
+                 <td>{{lea.status}}</td>
+                
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+{% endfor %}
+
+{% endblock content %}
+

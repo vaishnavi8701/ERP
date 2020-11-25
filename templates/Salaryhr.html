@@ -1,0 +1,61 @@
+ {% extends "basehr.html" %} {% csrf_token %} {% block content %} {% for emp in employees %}
+<div  id="content" class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:1100px; margin-right:0px; padding-left:25px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >View Payslip Generation</h2></b></div>
+
+</div>
+            <hr class="my-4">
+            <table class="table table-borderless" id="myTable">
+                <thead class="border-bottom font-weight-bold">
+                    <tr>
+                    <th> S.NO</th>
+                       
+                        <th>Month</th>
+               
+                            <th>Working Days</th>
+                            <th>Present Days</th>
+                            <th>Gross Salary</th>
+                        
+                            <th>Total Deduction</th>
+                            <th>Payable</th>
+                            <th>Salary Slip</th>
+                           
+
+
+                            </td>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                    
+
+                        <tr>{% for emp_sal in sala %}
+                        <td class='count'></td>
+                             
+                             
+                            <td>{{emp_sal.month}}</td>
+                           
+                            <td>{{emp_sal.working_days}}</td>
+                            <td>{{emp_sal.present_days}}</td>
+                            <td>{{emp_sal.gross}}</td>
+                          
+                            <td>{{emp_sal.total_dedu}}</td>
+                            <td>{{emp_sal.payable}}</td>
+                             <td> <a href='{% url "salary_slip" emp_sal.id %}' <button type="submit"  title='Generated salary slip'   class="btn btn-success"><istyle='color:black;' class="fas fa-eye"> View</i></button></a>&nbsp;<a href='{% url "salary_down" emp_sal.id %}'><button type="submit" class="btn btn-success"><istyle='color:black;' class=" fa fa-download"> Download</i></button></a></td>
+                           
+                            
+                        </tr>
+
+                        {% endfor %}
+                </tbody>
+            </table>
+          
+
+           
+          
+        </div>
+    </div>
+
+    {% endfor %} {% endblock content %}

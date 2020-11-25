@@ -1,0 +1,53 @@
+ 
+{% extends "basetech.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1070px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >New Project</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>S.No</td>
+            <td>Client Name</td>
+            <td>Date Assigned</td>
+            <td>Category</td>
+              <td>Project Starting Date</td>
+               <td>Project Ending Date</td>
+                <td>Project Leader</td>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+   {% for leave in e %}
+            <tr>
+            <td class='count'></td>
+                <td>{{leave.client_name}}</td>
+                <td>{{leave.client_deadline}}</td>
+                <td>{{leave.category}}</td>
+                    <td>{{leave.project_start_date}}</td>
+                        <td>{{leave.project_end_date}}</td>
+                <td>{{leave.project_leader}}</td>
+                <td>
+                    
+                     <a href="{% url 'accept' leave.id employee.Employee_id %}" class="btn text-secondary px-0">   <button type="submit" class="btn btn-success btn-block btn-primary">
+                Accept</button>
+                    </a></td>
+            
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
+

@@ -1,0 +1,64 @@
+ {% extends "basefin.html" %} {% csrf_token %} {% block content %} {% for emp in employees %}
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:1100px; margin-right:0px; padding-left:25px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Past Payments</h2></b></div>
+    
+</div>
+            <hr class="my-4">
+            <table class="table table-borderless" id="myTable">
+                <thead class="border-bottom font-weight-bold">
+                    <tr>
+               
+                    <th> S.NO</th>
+                       
+                        <th>Department</th>
+                        <th>EMP.ID</td>
+                            <th>Employee Name</th>
+                            <th>Account No</th>
+                        
+                            <th>Gross Salary</th>
+                            <th>PF</th>
+                            <th>ESI</th>
+                   
+                            <th>Total Deduction</th>
+                            <th>Amount Paid</th>
+                             <th>Date of Payment</th>
+                      
+
+
+                            </td>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                          
+                        <tr>{% for emp_sal in sala %}
+                      
+                        <td class='count'></td>
+                             
+                             
+                            <td>{{emp_sal.dept}}</td>
+                            <td>{{emp_sal.emid}}</td>
+                            <td>{{emp_sal.emp_name}}</td>
+                            <td>{{emp_sal.acno}}</td>
+                            <td>{{emp_sal.gross}}</td>
+                            <td>{{emp_sal.pf}}</td>
+                            <td>{{emp_sal.esi}}</td>
+                            <td>{{emp_sal.total_dedu}}</td>
+                            <td>{{emp_sal.payable}}</td>    
+                             <td>{{emp_sal.date_of_payment}}</td>      
+                            
+                        </tr>
+
+                        {% endfor %}
+                </tbody>
+            </table>
+        
+     
+           
+          
+        </div>
+    </div>
+    {% endfor %} {% endblock content %}

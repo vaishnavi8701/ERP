@@ -1,0 +1,55 @@
+ 
+{% extends "basehr.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1100px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >New Leave Approval</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <td>Employee Name</td>
+        <td>Employee ID</td>
+        <td>Designation</td>
+        <td>Department</td>
+            <td>Date of Applied</td>
+            <td>From Date</td>
+            <td> To Date</td>
+            <td>Reason</td>
+             <td>Leave Type</td>
+              <td>Status</td>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in leaves %}
+            <tr>
+            <td>{{leave.emp_name}}</td>
+            <td>{{leave.emp_id}}</td>
+            <td>{{leave.desgn}}</td>
+            <td>{{leave.branch}}</td>
+                <td>{{leave.date}}</td>
+                <td>{{leave.from_date}}</td>
+                <td>{{leave.to_date}}</td>
+                <td>{{leave.reason}}</td>
+                 <td>{{leave.leave_type}}</td><td>
+                <a href="{% url 'approvehr' leave.emp_id leave.id %}" <button type="submit" class="btn btn-success">Approve</button></a>
+                  <a href="{% url 'rejecthr' leave.emp_id leave.id %}" <button type="submit" class="btn btn-danger">Reject</button></td></a>
+                
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
+

@@ -1,0 +1,196 @@
+ 
+{% extends "basemar.html" %}
+
+{% block content %}
+{% csrf_token %}
+{% for employee in employees %}
+
+
+ 
+<div class="mt-sm-4">
+<div class="jumbotron" style="width:1100px;margin-left:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Existing Quotations</h2></b></div></div>
+          
+<hr>
+
+<h4 style="color:#7D3C98 "> Generated Quotations</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+               <th>Date</th>
+    
+        <th>Client Name</th>
+        <th>Category</th>
+            <th>Quotation ID</th>
+            <th>Quotation Value</th>
+            <th> Status</th>
+            <th>Option</th>
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in generate %}
+            <tr>
+     <td>{{leave.date}}</td>
+            <td>{{leave.client_name}}</td>
+            <td>{{leave.category}}</td>
+                <td>{{leave.quotation_id}}</td>
+                <td>{{leave.total}}</td>
+                <td onclick="openForm()" title='Restatus Quotation' class="btn text-secondary px-0">{{leave.status}}</td>
+                <td> <a href='{% url 'view' leave.clientid %}' <button type="submit"  title='Generated salary slip'   class="btn btn-success"><istyle='color:black;' class="fas fa-eye"> View</i></button></a>&nbsp;<a href='{% url 'quotdown' leave.clientid %}'><button type="submit" class="btn btn-success"><istyle='color:black;' class=" fa fa-download"> Download</i></button></a></td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+<hr>
+<h4 style="color:#7D3C98 "> Accepted Quotations</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>Date</th>
+    
+        <th>Client Name</th>
+        <th>Category</th>
+            <th>Quotation ID</th>
+            <th>Quotation Value</th>
+            <th> Status</th>
+            <th>Option</th>
+             <th>First Payment Date</th>
+             <th>Amount</th>
+          
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in accept %}
+            <tr>
+         <td>{{leave.date}}</td>
+            <td>{{leave.client_name}}</td>
+            <td>{{leave.category}}</td>
+                <td>{{leave.quotation_id}}</td>
+                <td>{{leave.total}}</td>
+                <td>{{leave.status}}</td>
+               
+                 <td><a href='{% url 'view' leave.clientid %}' <button type="submit"  title='Generated salary slip'   class="btn btn-success"><istyle='color:black;' class="fas fa-eye"> View</i></button></a></td>
+                 <td>{{leave.first_payment_date}}</td>
+                   <td>{{leave.first_amt}}</td>
+                 
+                
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+<hr>
+<h4 style="color:#7D3C98 "> Not Accepted Quotations</h4>
+<table class="table table-borderless" id="myTable">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>Date</th>
+    
+        <th>Client Name</th>
+        <th>Category</th>
+            <th>Quotation ID</th>
+            <th>Quotation Value</th>
+            <th> Status</th>
+            <th>Option</th>
+             <th>Reason</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in notaccept %}
+            <tr>
+            <td>{{leave.date}}</td>
+            <td>{{leave.client_name}}</td>
+            <td>{{leave.category}}</td>
+                <td>{{leave.quotation_id}}</td>
+                <td>{{leave.total}}</td>
+                <td>{{leave.status}}</td>
+               
+                 <td><a href='{% url 'view' leave.clientid %}' <button type="submit"  title='Generated salary slip'   class="btn btn-success"><istyle='color:black;' class="fas fa-eye"> View</i></button></a></td>
+                 <td>{{leave.reason}}</td>
+                 
+                
+                
+
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+ 
+<div class="form-popup " style='bottom:30px; left:280px;' id="myForm">
+  <form action="{% url 'amount' employee.Employee_id %} " class="form-container" method='post'>
+ 
+    {% csrf_token %}
+<table>
+<tr><td>
+    <label for="quotation_id"><b>Quotation ID</b></label></td><td>
+    <input type="text"  name="quotation_id" placeholder='Quotation ID' ><br></td></tr>
+<tr><td>
+    <label for="status1"><b>Status</b></label></td>
+    <td><input  type="text"  list="browsers2"  name="status1" id='status1' placeholder='Current Status' required>
+     <datalist id="browsers2">
+                                         <option value="Generated">Generated</option>
+                                         <option value="Accepted">Accepted</option>
+                                         <option value="Not Accepted">Not Accepted</option>
+                                       </datalist></td></tr>
+
+<tr><td>
+   
+    <label for="reason"><b>Reason</b></label></td>
+    <td><input type="text"  list="browsers1" name="reason" placeholder='If not accepted' >
+     <datalist id="browsers1">
+                                         <option value="Cost">Cost</option>
+                                         <option value="Requirements not matched">Requirements not matched</option>
+                                         <option value="Quality">Quality</option>
+                                       </datalist></td></tr>
+<tr><td>
+    <label for="client_deadline1"><b>Client Deadline(In days)</b></label></td>
+    <td><input type="text"  list="browsers4" name="client_deadline1" placeholder='If accepted' >
+     <datalist id="browsers4">
+                                         <option value='15'>15 </option>
+                                         <option value='30'>30 </option>
+                                         <option value='45'>45 </option>
+                                          <option value='60'>60</option>
+                                       </datalist></td></tr>  
+                                       <tr><td>
+    <label for="first_payment_date"><b>First Payment Date(If accepted)</b></label></td><td> &nbsp;
+    <input type="date"  name="first_payment_date" ><br></td></tr><br>
+<tr><td><br></td></tr><tr><td>
+    <label for="amount"><b>Amount</b></label></td><td>
+    <input type="text"  name="amount" placeholder='If accepted' ><br></td></tr>
+<tr><td><br>
+
+    <button type="submit" class="btn">Submit</button></td><td><br>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button></td></tr></table>
+  </form>
+</div>
+ 
+
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+
+
+
+{% endfor %}
+
+
+{% endblock content %}
+

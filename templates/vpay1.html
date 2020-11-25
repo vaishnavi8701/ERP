@@ -1,0 +1,96 @@
+ {% extends "base.html" %}{% block content %} {% csrf_token %} 
+<div class="col-md-10  mt-sm-4">
+    <div class="jumbotron" style="width:1100px; margin-right:0px; padding-left:25px;">
+        <div class="row">
+            <div class="col-md-8 ">
+                <b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Vendor Payment History</h2></b></div>
+    
+</div>
+            <hr class="my-4">
+            <table class="table table-borderless" id="myTable">
+                <thead class="border-bottom font-weight-bold">
+                    <tr>
+               
+                    <th> S.NO</th>
+                       
+                        <th>Vendor ID</th>
+                      
+                            <th>Vendor Name</th>
+                         
+                        
+                            <th>Service Provided</th>
+                            <th>Payment Mode</th>
+                            <th>Payment Date</th>
+                   
+                      
+                            <th>Amount Paid</th>
+                             <th>Payment Method</th>
+                             <th>Status</th>
+                      
+
+
+                            </td>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for emp_sal in sal %}
+                      
+                          
+                        <tr>
+                        <td class='count'></td>
+                             
+                             
+                            <td>{{emp_sal.vendor_id}}</td>
+                            <td>{{emp_sal.vendor_name}}</td>
+                            <td>{{emp_sal.service_provided}}</td>
+                            <td>{{emp_sal.payment_duration}}</td>
+                            <td>{{emp_sal.paid_date}}</td>
+                            <td>{{emp_sal.cost}}</td>
+                            <td>{{emp_sal.mode_of_pay}}</td>
+                                
+                              <td>Pending</td>      
+                            
+                        </tr>
+                        
+
+                        {% endfor %}
+                            
+                        <tr>{% for emp_sal in salary %}
+                      
+                        <td class='count'></td>
+                             
+                             
+                              <td>{{emp_sal.vendor_id}}</td>
+                            <td>{{emp_sal.vendor_name}}</td>
+                            <td>{{emp_sal.service_provided}}</td>
+                            <td>{{emp_sal.payment_duration}}</td>
+                            <td>{{emp_sal.paid_date}}</td>
+                            <td>{{emp_sal.cost}}</td>
+                            <td>{{emp_sal.mode_of_pay}}</td>    
+                                <td>{{emp_sal.pay_status}}</td>      
+                            
+                        </tr>
+                        
+
+                        {% endfor %}
+                </tbody>
+            </table>
+       <div class="row">
+            <div class="col-md-6 "><b style='float:right;color:#7D3C98;'>
+     Total Payable:</b></div>
+      <div class="col-md-6 "><b style='float:left;'>
+     {{total}}</b></div></div>
+ <div class="row">
+            <div class="col-md-6 "><b style='float:right;color:#7D3C98;'>
+     Total Amount Paid:</b></div>
+     <div class="col-md-6 "><b style='float:left;'>
+     {{amount}}</b></div></div>
+      <div class="row">
+            <div class="col-md-6 "><b style='float:right;color:#7D3C98;'>
+     Balance Amount:</b></div>
+     <div class="col-md-6 "><b style='float:left;'>{{balance}}</b></div></div>
+           
+          
+        </div>
+    </div>
+    {% endblock content %}

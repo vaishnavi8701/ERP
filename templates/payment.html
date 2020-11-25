@@ -1,0 +1,68 @@
+ 
+{% extends "basemar.html" %}
+{% csrf_token %}
+
+{% block content %}
+
+{% for employee in employees %}
+ 
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1070px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Payments</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>S.No</td>
+            <td>Client Name</td>
+            <td>Quotation ID</td>
+             <td>Quotation Value</td>
+            <td>Total Amount Paid</td>
+             <td>Balance Amount</td>
+              <td>Payment1 Date</td>
+               <td>Amount</td>
+                <td>Payment2 Date</td>
+               <td>Amount</td>
+                <td>Payment3 Date</td>
+               <td>Amount</td>
+             
+
+           
+        </tr>
+    </thead>
+    <tbody>
+       {% for leave in r %}
+            <tr><td class='count'></td>
+                <td>{{leave.client_name}}</td>
+                <td>{{leave.quotation_id}}</td>
+                <td>{{leave.total}}</td>
+                <td>{{leave.amount_paid}}</td>
+                 <td>{{leave.balance}}</td>
+                  <td>{{leave.first_payment_date}}</td>
+                     <td>{{leave.first_amt}}</td>
+                   
+                     {% if leave.second_amt == '0' %} 
+                   
+                  <td>{{leave.second_payment_date}}</td>
+                 
+                     <td>{{leave.second_amt}}</td>
+                      <td>0</td>
+                        <td>{{leave.third_amt}}</td>
+                      {% else %}
+                      <td>{{leave.second_payment_date}}</td>
+                     <td>{{leave.second_amt}}</td>
+                     <td>{{leave.third_payment_date}}</td>
+                        <td>{{leave.third_amt}}</td>
+                     {% endif %}
+                
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
+

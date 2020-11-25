@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:970px; margin-right:0px;">
+        <div class="row">
+            <div class="col-md-6 ">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >New Services</h2></b></div>
+
+            <div class="col-md-6 ">
+
+<label for="Name"><b style="font-style:bold; color:red;">Service ID: &nbsp;</b></label>
+
+<input type="password" disabled name="password" placeholder={{serid}}></div></div>
+<hr class="my-4">
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+ 
+    
+    <div class="row">
+        <div class="col-md-6">
+            {{form.service_name|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.category|as_crispy_field}}
+        </div>
+    </div>
+        
+    <div class="row">
+        <div class="col-md-6">
+            {{form.cost|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.technology|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'new_services' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-sync"></i> Reset
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

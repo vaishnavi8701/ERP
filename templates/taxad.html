@@ -1,0 +1,60 @@
+ 
+{% extends "base.html" %}
+
+
+{% block content %}
+
+ {% csrf_token %}
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron " style="width:1070px;margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold" >Tax Payment</h2></b>
+
+<hr class="my-4">
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+        <th>S.No</th>
+            <th>Date</th>
+            <th>Receipt Number</th>
+            <th>Client ID</th>
+            <th>SGST</th>
+            <td>CGST</th>
+            <th>Total GST</th>
+
+            
+        </tr>
+    </thead>
+    <tbody>
+       
+           {% for announce in tax%}
+            <tr>
+             <td class='count'</td>
+                <td>{{announce.date}}</td>
+                <td>{{announce.receipt_id}}</td>
+                <td>{{announce.client_id}}</td>
+                <td>{{announce.sgst}}</td>
+                <td>{{announce.cgst}}</td>
+                <td>{{announce.tax}}</td>
+                
+
+            </tr>
+            {% endfor %}
+            <tr><br></tr>
+            <tr>
+             <td ></td>
+                <td></td><td></td>
+                <td>Total:</td>
+                <td>{{sgst}}</td>
+                <td>{{cgst}}</td>
+                 <td>{{ta}}</td>
+                
+
+            </tr>
+      
+    </tbody>
+</table>
+
+
+
+{% endblock content %}
+

@@ -1,0 +1,93 @@
+{% extends "basefin.html" %} 
+{% load crispy_forms_tags %} 
+
+{% block content %}
+{% for employee in employees %}
+
+<div class="col-md-10  mt-sm-4">
+<div class="jumbotron" style="width:1070px; margin-right:0px;">
+<b><h2 style="color:#7D3C98 " class="display-5 font-bold">Vendor Details</h2></b>
+
+<hr class="my-4">
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            {{form.vendor_id|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.vendor_name|as_crispy_field}}
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+            {{form.contact|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.type_amt|as_crispy_field}}
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-md-6">
+            {{form.payment_duration|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.email|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{form.vendor_pan|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.status|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+     <div class="col-md-6">
+            {{form.vendor_gst|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.cost|as_crispy_field}}
+        </div>
+
+    </div>
+      <div class="row">
+     <div class="col-md-6">
+            {{form.service_provided|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.location|as_crispy_field}}
+        </div>
+
+    </div>
+      <div class="row">
+     <div class="col-md-6">
+            {{form.mode_of_pay|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.due_date|as_crispy_field}}
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-8">
+           <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'viewsvendor' employee.id %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+</div>
+</div>
+{% endfor %}
+{% endblock content %}
